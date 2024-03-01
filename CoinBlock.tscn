@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cil6aj0yxv20h"]
+
+[ext_resource type="Script" path="res://CoinBlock.gd" id="1_4yjr6"]
+[ext_resource type="Texture2D" uid="uid://daualkm00a10n" path="res://art/CoinBox.png" id="1_smftx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0slok"]
+size = Vector2(36, 36)
+
+[sub_resource type="GDScript" id="GDScript_jruph"]
+script/source = "extends CollisionShape2D
+"
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_4yjr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_smftx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0slok")
+script = SubResource("GDScript_jruph")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
