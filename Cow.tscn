@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://c68j80cys080k"]
+
+[ext_resource type="Script" path="res://CowScript.gd" id="1_ret0w"]
+[ext_resource type="Texture2D" uid="uid://dwcxrqoo3n3o6" path="res://art/Characters/Free Cow Sprites.png" id="1_y1jjh"]
+
+[sub_resource type="Animation" id="Animation_faecl"]
+resource_name = "idle_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_87iuh"]
+resource_name = "idle_right"
+length = 0.6
+loop_mode = 1
+step = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2528"]
+_data = {
+"idle_left": SubResource("Animation_faecl"),
+"idle_right": SubResource("Animation_87iuh")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pcgd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkegb"]
+size = Vector2(26, 9)
+
+[node name="Cow" type="CharacterBody2D"]
+script = ExtResource("1_ret0w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_y1jjh")
+hframes = 3
+vframes = 2
+
+[node name="walk" type="Timer" parent="."]
+
+[node name="idle" type="Timer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u2528")
+}
+tree_root = SubResource("AnimationNodeStateMachine_pcgd0")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u2528")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_fkegb")
+
+[connection signal="timeout" from="walk" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="idle" to="." method="_on_idle_timeout"]
