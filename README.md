@@ -5,3 +5,5 @@ This is a tech demo I put together to familiarize myself with Godot's toolkit.  
 This is meant to be a simple tech demo, so there is no plan for any additional features, nor are there many features in this demo.  
 
 Many thanks to Cupnoodle for the Sprout Lands asset pack!  https://cupnooble.itch.io/sprout-lands-asset-pack
+
+![Alt text](ezgif-6-6afa7abdb6.gif?raw=true "Optional Title")
