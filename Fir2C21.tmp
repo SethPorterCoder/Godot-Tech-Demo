@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://du5eytdhlk25e"]
+
+[ext_resource type="Script" path="res://MainScript.gd" id="1_pa3mt"]
+[ext_resource type="PackedScene" uid="uid://5r6iy53ss3mj" path="res://player.tscn" id="1_torbp"]
+[ext_resource type="PackedScene" uid="uid://cil6aj0yxv20h" path="res://CoinBlock.tscn" id="2_0lkfp"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_pa3mt")
+
+[node name="Player" parent="." instance=ExtResource("1_torbp")]
+position = Vector2(458, 256)
+
+[node name="CoinBlock" parent="." instance=ExtResource("2_0lkfp")]
+position = Vector2(642, 375)
